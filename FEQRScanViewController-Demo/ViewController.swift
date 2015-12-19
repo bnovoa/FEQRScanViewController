@@ -8,18 +8,29 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, FEQRScanViewControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
+    // MARK: Actions
+    
+    @IBAction func openScanner(sender: AnyObject) {
+        let scanner = FEQRScanViewController()
+        scanner.delegate = self
+        let navController = UINavigationController(rootViewController: scanner)
+        presentViewController(navController, animated: true, completion: nil)
+    }
 
+    // MARK: FEQRScanViewControllerDelegate
+    
+    func didScanCodeWithResult(result: String) {
+        print("Scanner returned result: \(result)")
+    }
 }
 
