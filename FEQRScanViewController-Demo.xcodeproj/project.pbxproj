@@ -12,6 +12,9 @@
 		1F3BA1B21C24B91800F05128 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F3BA1B01C24B91800F05128 /* Main.storyboard */; };
 		1F3BA1B41C24B91800F05128 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F3BA1B31C24B91800F05128 /* Assets.xcassets */; };
 		1F3BA1B71C24B91800F05128 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F3BA1B51C24B91800F05128 /* LaunchScreen.storyboard */; };
+		1FD764941C258CE4003EF21D /* FEQRScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD764931C258CE4003EF21D /* FEQRScanViewController.swift */; };
+		1FD764961C258CF3003EF21D /* FEQRScanViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FD764951C258CF3003EF21D /* FEQRScanViewController.xib */; };
+		1FD764981C258D1B003EF21D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD764971C258D1B003EF21D /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		1F3BA1B31C24B91800F05128 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F3BA1B61C24B91800F05128 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F3BA1B81C24B91800F05128 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1FD764931C258CE4003EF21D /* FEQRScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FEQRScanViewController.swift; path = FEQRScanViewController/FEQRScanViewController.swift; sourceTree = SOURCE_ROOT; };
+		1FD764951C258CF3003EF21D /* FEQRScanViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FEQRScanViewController.xib; path = FEQRScanViewController/FEQRScanViewController.xib; sourceTree = SOURCE_ROOT; };
+		1FD764971C258D1B003EF21D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FD764981C258D1B003EF21D /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +45,7 @@
 		1F3BA1A01C24B91800F05128 = {
 			isa = PBXGroup;
 			children = (
+				1FD764991C258DD6003EF21D /* Frameworks */,
 				1F3BA1AB1C24B91800F05128 /* FEQRScanViewController-Demo */,
 				1F3BA1AA1C24B91800F05128 /* Products */,
 			);
@@ -56,12 +64,30 @@
 			children = (
 				1F3BA1AC1C24B91800F05128 /* AppDelegate.swift */,
 				1F3BA1AE1C24B91800F05128 /* ViewController.swift */,
+				1FD764921C258C80003EF21D /* FEQRScanViewController */,
 				1F3BA1B01C24B91800F05128 /* Main.storyboard */,
 				1F3BA1B31C24B91800F05128 /* Assets.xcassets */,
 				1F3BA1B51C24B91800F05128 /* LaunchScreen.storyboard */,
 				1F3BA1B81C24B91800F05128 /* Info.plist */,
 			);
 			path = "FEQRScanViewController-Demo";
+			sourceTree = "<group>";
+		};
+		1FD764921C258C80003EF21D /* FEQRScanViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1FD764931C258CE4003EF21D /* FEQRScanViewController.swift */,
+				1FD764951C258CF3003EF21D /* FEQRScanViewController.xib */,
+			);
+			name = FEQRScanViewController;
+			sourceTree = "<group>";
+		};
+		1FD764991C258DD6003EF21D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1FD764971C258D1B003EF21D /* AVFoundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F3BA1B71C24B91800F05128 /* LaunchScreen.storyboard in Resources */,
+				1FD764961C258CF3003EF21D /* FEQRScanViewController.xib in Resources */,
 				1F3BA1B41C24B91800F05128 /* Assets.xcassets in Resources */,
 				1F3BA1B21C24B91800F05128 /* Main.storyboard in Resources */,
 			);
@@ -135,6 +162,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FD764941C258CE4003EF21D /* FEQRScanViewController.swift in Sources */,
 				1F3BA1AF1C24B91800F05128 /* ViewController.swift in Sources */,
 				1F3BA1AD1C24B91800F05128 /* AppDelegate.swift in Sources */,
 			);
@@ -286,6 +314,7 @@
 				1F3BA1BD1C24B91800F05128 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
