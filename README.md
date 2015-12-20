@@ -7,6 +7,8 @@
 
 **Swift 2.2 ready**
 
+**100% Swift** 🤓
+
 ---
 
 ## About FEQRScanViewController
@@ -18,7 +20,8 @@ Coming soon!
 ### Import
 
 1. Import `AVFoundation.framework` into your Project
-2.
+2. Add `FEQRScanViewController.swift` to your Project
+3. Have fun!
 
 ### Code examples
 
