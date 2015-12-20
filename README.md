@@ -15,8 +15,39 @@ Coming soon!
 
 ## Usage
 
+### Import
+
 1. Import `AVFoundation.framework` into your Project
 2.
+
+### Code examples
+
+Simply presenting the scanner:
+```swift
+let scanner = FEQRScanViewController()
+presentViewController(scanner, animated: true, completion: nil)
+```
+
+Presenting the scanner in a `UINavigationController` and setting its Close-Button title:
+```swift
+let scanner = FEQRScanViewController(closeTitle: "Ciao!")
+
+let navController = UINavigationController(rootViewController: scanner)
+presentViewController(navController, animated: true, completion: nil)
+```
+
+In order to receive a result from the scanner, you'll need to implement the `FEQRScanViewControllerDelegate` protocol and set the `delegate` property of the scanner accordingly:
+```swift
+let scanner = FEQRScanViewController()
+scanner.delegate = self
+```
+
+Furthermore you'll also need to implement the `didScanCodeWithResult()` protocol function. The result is passed as a String:
+```swift
+func didScanCodeWithResult(result: String) {
+    print("Scanner returned result: \(result)")
+}
+```
 
 ## License
 

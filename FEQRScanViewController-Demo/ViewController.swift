@@ -23,6 +23,7 @@ class ViewController: UIViewController, FEQRScanViewControllerDelegate {
     @IBAction func openScanner(sender: AnyObject) {
         let scanner = FEQRScanViewController()
         scanner.delegate = self
+        
         let navController = UINavigationController(rootViewController: scanner)
         presentViewController(navController, animated: true, completion: nil)
     }
@@ -31,6 +32,13 @@ class ViewController: UIViewController, FEQRScanViewControllerDelegate {
     
     func didScanCodeWithResult(result: String) {
         print("Scanner returned result: \(result)")
+        
+        let alert = UIAlertController(title: "Result", message: result, preferredStyle: .Alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .Default, handler: { (action: UIAlertAction) -> Void in
+            alert.dismissViewControllerAnimated(true, completion: nil) 
+        }))
+        
+        presentViewController(alert, animated: true, completion: nil)
     }
 }
 
