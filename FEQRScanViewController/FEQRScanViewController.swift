@@ -107,7 +107,7 @@ class FEQRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         // Initialize and configure the CaptureSession
         captureSession = AVCaptureSession()
         
-        configureSession(captureSession)
+        captureSession = configureSession(captureSession)
 
         let metadataOutput = AVCaptureMetadataOutput()
         
