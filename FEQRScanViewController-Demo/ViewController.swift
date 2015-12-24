@@ -21,10 +21,10 @@ class ViewController: UIViewController, FEQRScanViewControllerDelegate {
     // MARK: Actions
     
     @IBAction func openScanner(sender: AnyObject) {
-        let scanner = FEQRScanViewController()
+        let scanner = FEQRScanViewController(closeTitle: "Ciao!")
         scanner.delegate = self
         
-        let navController = UINavigationController(rootViewController: scanner)
+        let navController = FENavigationController(rootViewController: scanner)
         presentViewController(navController, animated: true, completion: nil)
     }
 

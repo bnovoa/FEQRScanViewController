@@ -28,6 +28,12 @@ SOFTWARE.
 import UIKit
 import AVFoundation
 
+class FENavigationController: UINavigationController {
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return .Portrait
+    }
+}
+
 protocol FEQRScanViewControllerDelegate {
     func didScanCodeWithResult(result: String)
 }
@@ -66,7 +72,6 @@ class FEQRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         // Close-Button
         let doneButton = UIBarButtonItem(title: closeTitle, style: .Plain, target: self, action: "done")
         navigationItem.setLeftBarButtonItem(doneButton, animated: false)
-  
         
         // Request camera access
         AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo, completionHandler: { (granted: Bool) -> Void in
@@ -191,10 +196,6 @@ class FEQRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             if let _ = self.previewLayer {
                 self.previewLayer.frame = self.cameraView.layer.bounds
-                
-                if self.previewLayer.connection.supportsVideoOrientation {
-                    self.previewLayer.connection.videoOrientation = self.interfaceOrientationToVideoOrientation(UIApplication.sharedApplication().statusBarOrientation)
-                }
             }
         }
     }
@@ -255,5 +256,11 @@ class FEQRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         default:
             return AVCaptureVideoOrientation.Portrait
         }
+    }
+    
+    // MARK: Rotation
+    
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return .Portrait
     }
 }
