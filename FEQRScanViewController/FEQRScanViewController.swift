@@ -67,12 +67,17 @@ class FEQRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         let doneButton = UIBarButtonItem(title: closeTitle, style: .Plain, target: self, action: "done")
         navigationItem.setLeftBarButtonItem(doneButton, animated: false)
   
+        
         // Request camera access
         AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo, completionHandler: { (granted: Bool) -> Void in
             if granted {
-                self.setupScanner()
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.setupScanner()
+                })
             } else {
-                self.accessDenied()
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.accessDenied()
+                })
             }
         })
     }
@@ -96,7 +101,6 @@ class FEQRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     private func setupScanner() {
         // Initialize and configure the CaptureSession
         captureSession = AVCaptureSession()
-        captureSession.sessionPreset = AVCaptureSessionPresetPhoto
         
         configureSession(captureSession)
 
@@ -124,16 +128,16 @@ class FEQRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         cameraView.layer.masksToBounds = true
         cameraView.layer.addSublayer(previewLayer)
 
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), { () -> Void in
-            self.captureSession.startRunning()
-        })
-        
         updateUI()
+        
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.captureSession.startRunning()
+        }
     }
     
     private func configureSession(session: AVCaptureSession) -> AVCaptureSession {
         session.beginConfiguration()
-        
+
         for input in session.inputs {
             session.removeInput(input as! AVCaptureInput)
         }
@@ -171,6 +175,7 @@ class FEQRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
             if types.contains(AVMetadataObjectTypeQRCode) {
                 return true
             }
+            return false
         }
         return false
     }
@@ -183,11 +188,13 @@ class FEQRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
     }
     
     private func updateUI() {
-        if let _ = previewLayer {
-            previewLayer.frame = cameraView.layer.bounds
-            
-            if previewLayer.connection.supportsVideoOrientation {
-                previewLayer.connection.videoOrientation = interfaceOrientationToVideoOrientation(UIApplication.sharedApplication().statusBarOrientation)
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            if let _ = self.previewLayer {
+                self.previewLayer.frame = self.cameraView.layer.bounds
+                
+                if self.previewLayer.connection.supportsVideoOrientation {
+                    self.previewLayer.connection.videoOrientation = self.interfaceOrientationToVideoOrientation(UIApplication.sharedApplication().statusBarOrientation)
+                }
             }
         }
     }
@@ -200,10 +207,10 @@ class FEQRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         }
         
         if let metadataObject = metadataObjects.first {
-            let readableObject = metadataObject as! AVMetadataMachineReadableCodeObject;
+            let readableObject = metadataObject as! AVMetadataMachineReadableCodeObject
             
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-            foundCode(readableObject.stringValue);
+            foundCode(readableObject.stringValue)
         }
     }
     
