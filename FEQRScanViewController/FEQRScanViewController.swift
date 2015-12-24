@@ -131,7 +131,7 @@ class FEQRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         updateUI()
     }
     
-    private func configureSession(session: AVCaptureSession) {
+    private func configureSession(session: AVCaptureSession) -> AVCaptureSession {
         session.beginConfiguration()
         
         for input in session.inputs {
@@ -143,6 +143,8 @@ class FEQRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDe
         }
         
         session.commitConfiguration()
+        
+        return session
     }
     
     private func rearCamera() -> AVCaptureDeviceInput? {
